@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Real Estate Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .task-item {
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 8px;
+        }
+        .ios-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body class="px-4 py-6 max-w-md mx-auto">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-xl font-bold">Today's Dashboard</h1>
+        <div class="text-sm text-gray-500" id="currentDate"></div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="metric-card">
+        <h2 class="text-lg font-semibold mb-3">Quick Stats</h2>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-gray-50 p-3 rounded-lg">
+                <div class="text-sm text-gray-600">Meetings</div>
+                <div class="text-xl font-bold" id="meetingsCount">3</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg">
+                <div class="text-sm text-gray-600">Follow-ups</div>
+                <div class="text-xl font-bold" id="followupsCount">5</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg">
+                <div class="text-sm text-gray-600">New Leads</div>
+                <div class="text-xl font-bold" id="leadsCount">2</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg">
+                <div class="text-sm text-gray-600">Active Deals</div>
+                <div class="text-xl font-bold" id="dealsCount">4</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Goals -->
+    <div class="metric-card">
+        <h2 class="text-lg font-semibold mb-3">Daily Goals</h2>
+        <div class="space-y-4">
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Past Client Connections</span>
+                    <span>3/4</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Sphere Contacts</span>
+                    <span>2/3</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 66%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span>New Leads</span>
+                    <span>1/1</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Urgent Tasks -->
+    <div class="metric-card">
+        <h2 class="text-lg font-semibold mb-3">Urgent Tasks</h2>
+        <div class="space-y-2">
+            <div class="task-item flex justify-between items-center">
+                <div>
+                    <div class="font-medium">Follow up with Johnson family</div>
+                    <div class="text-sm text-gray-500">2:00 PM</div>
+                </div>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </div>
+            <div class="task-item flex justify-between items-center">
+                <div>
+                    <div class="font-medium">Send market update to Smith</div>
+                    <div class="text-sm text-gray-500">3:30 PM</div>
+                </div>
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <button class="ios-btn w-full" onclick="addTask()">Add New Task</button>
+
+    <script>
+        // Set current date
+        const date = new Date();
+        document.getElementById('currentDate').textContent = date.toLocaleDateString('en-US', { 
+            weekday: 'short', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+
+        // Simple add task function
+        function addTask() {
+            alert('Add Task feature coming soon!');
+        }
+
+        // Update counts periodically (simulate real data)
+        function updateCounts() {
+            document.getElementById('meetingsCount').textContent = 
+                Math.floor(Math.random() * 3) + 2;
+            document.getElementById('followupsCount').textContent = 
+                Math.floor(Math.random() * 4) + 3;
+            document.getElementById('leadsCount').textContent = 
+                Math.floor(Math.random() * 2) + 1;
+            document.getElementById('dealsCount').textContent = 
+                Math.floor(Math.random() * 3) + 2;
+        }
+
+        // Update every 5 minutes
+        setInterval(updateCounts, 300000);
+    </script>
+</body>
+</html>
